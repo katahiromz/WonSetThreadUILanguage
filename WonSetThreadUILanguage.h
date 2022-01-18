@@ -5,7 +5,7 @@
 #endif
 
 #ifndef WonIsWindowsVistaOrLater
-    static inline BOOL WonIsWindowsVistaOrLater(VOID)
+    static __inline BOOL WonIsWindowsVistaOrLater(VOID)
     {
         OSVERSIONINFOW osver = { sizeof(osver) };
         return (GetVersionExW(&osver) && osver.dwMajorVersion >= 6);
@@ -16,7 +16,7 @@
 typedef LANGID (WINAPI *FN_GetThreadUILanguage)(VOID);
 typedef LANGID (WINAPI *FN_SetThreadUILanguage)(LANGID);
 
-static inline LANGID WonGetThreadUILanguage()
+static __inline LANGID WonGetThreadUILanguage()
 {
     static FN_GetThreadUILanguage s_fn = NULL;
 
@@ -32,7 +32,7 @@ static inline LANGID WonGetThreadUILanguage()
     return LANGIDFROMLCID(GetThreadLocale());
 }
 
-static inline LANGID WonSetThreadUILanguage(LANGID LangID)
+static __inline LANGID WonSetThreadUILanguage(LANGID LangID)
 {
     static FN_SetThreadUILanguage s_fn = NULL;
 
